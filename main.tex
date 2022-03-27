@@ -25,7 +25,7 @@
 \newlength\figurewidth
 
 \usepackage[backend=biber]{biblatex}
-\addbibresource{bibliography.bib}
+\addbibresource{references.bib}
 
 \usepackage{arabtex}
 \usepackage{utf8}
@@ -67,7 +67,8 @@
 
 \begin{document}
     \include{page_de_garde}
-    \addcontentsline{toc}{chapter}{Page de garde}
+    \addcontentsline{toc}{chapter}{Cover page}
     \tableofcontents
-    \addcontentsline{toc}{chapter}{Table des matières}
+    \addcontentsline{toc}{chapter}{Table of contents}
+	\printbibliography
 \end{document}
