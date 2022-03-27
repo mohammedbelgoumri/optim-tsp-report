@@ -1,9 +1,9 @@
 \documentclass[12pt, a4paper]{report}
 
-\usepackage[french]{babel}
+% \usepackage[french]{babel}
 \usepackage[utf8]{inputenc} 
 \usepackage{csquotes}
-\usepackage[T1]{fontenc}
+% \usepackage[T1]{fontenc}
 \usepackage{array}
 \usepackage{amsmath, amssymb, amsfonts, amsthm}
 \usepackage{xcolor}
@@ -64,11 +64,22 @@
 
 \setlength{\parskip}{.4cm}
 
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Leamma}
+\newtheorem{corollary}{Corollary}[theorem]
+\theoremstyle{definition}
+\newtheorem{thedef}[theorem]{Theorem and definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
 
 \begin{document}
     \include{page_de_garde}
     \addcontentsline{toc}{chapter}{Cover page}
     \tableofcontents
     \addcontentsline{toc}{chapter}{Table of contents}
-	\printbibliography
+	
+	% \printbibliography
 \end{document}
