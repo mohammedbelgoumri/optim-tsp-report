@@ -1,0 +1,13 @@
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+The traveling salesman problem (which will be denoted by \textsf{TSP} for brevity's sake) is a classic problem in computer science. It is a typical example of a combinatorial optimization problem, that is, an optimization problem with a \emph{discrete} solution space.
+
+In its simplest form, the \textsf{TSP} asks the following question: ``A salesman wants to take \emph{the best\footnote{Usually ``best'' means shortest.} possible itenerary} between a set of cities, every city must be visited exactly once, and the salesman must start and finish at the same city. How can he find this itenerary?''
+
+It is not dificult to see the practical use of solving the \textsf{TSP}. 
+In fact, many important problems like vehicle routing, scheduling, array clustering~\cite{tsp-tour}, and circuit design~\cite{tsp-computational-solutions} can be \emph{expressed\footnote{Formally speaking, these problems can be \emph{reduced} to \textsf{TSP.}}} as \textsf{TSP} instances.
+
+Furthermore, the \textsf{TSP} is of particular theoretical interest to complexity theory researchers, as its decision variant a member of a very important family of decision problems called \textsf{NP}-complete problems.
+
+In this document, we will introduce the \textsf{TSP}, investigate some of its properties and applications, and propose a few algorithms for solving it.
