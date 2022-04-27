@@ -1,0 +1,17 @@
+\chapter{Branch and Bound}
+
+\section{Motivation}
+
+    The direct method as we have seen is, despite the simplicity of its implementation, unrealistically slow for even very small instances. 
+    
+    Faster exact algorithms exist, but none of them is polynomial since TSP is NP-complete. In fact, under the assumption \(P\neq NP\), no polynomial solution exists.
+
+    Branch and Bound is one such algorithm that we will dedicate the rest of the chapter to.
+
+\section{The idea of Branch and Bound}
+
+    The idea of Branch and Bound is to eliminate certain branches from the search space to decrease runtime.
+
+    This is done by computing a \emph{lower bound} and \emph{upper bound} for every branch, and then pruning branches that are garanted to be worse than the best known solution.
+
+\section{The implementation}
