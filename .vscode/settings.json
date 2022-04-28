@@ -7,7 +7,8 @@
             "command": "latexmk",
             "args": [
                 "-pdf",
-                "%DOC%.tex"
+                "main.tex",
+                "-jobname=report"
             ],
             "env": {}
         },
@@ -16,14 +17,14 @@
             "command": "latexmk",
             "args": [
                 "-c",
-                "%DOC%.tex"
+                "main.tex"
             ]
         },
         {
             "name": "biber",
             "command": "biber",
             "args": [
-                "main"
+                "report"
             ]
         }
     ],
