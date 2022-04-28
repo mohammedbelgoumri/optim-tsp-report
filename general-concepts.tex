@@ -1,0 +1,44 @@
+\chapter{General Concepts}
+
+
+\section{Computational Complexity}
+
+    Throughout this document, we will often find ourselevs in need of a method to objectively measure the difficulty of a problem or the efficiency of an algorithm. Fortunately, there exists an entire branch of theoretical computer science that addresses these very questions: \emph{the theory of computational complexity}.
+
+    A minor technical obstacle to the use of computational complexity theory on the \textsf{TSP} is the fact that this theory only considers so-called decision problems. The \textsf{TSP} beeing an optimization problem, is therefore formally speaking out of the scope of this framework.
+
+    However, this can be metigated by associating a decision problem with the \textsf{TSP} in such a way as to preserve its difficulty. The rest of this section will provide such an association after developing the necessary tools.
+
+    \subsection{Combinatorial Optimization Problems}
+
+        Combinatorial optimization seeks to find an \emph{optimum} with respect to some \emph{objective} in a discrete \emph{space of options}. Therefore, it suffices to define these parameters in order to define a combinatorial optimization problem. Formally speakeing, we give the following definition:
+
+        \begin{definition}[Optimization problem]\ \\
+            A combinatorial optimization problem (or simply, an optimization problem) \(A\) is given by a quadruple \(A \colonequals (S, R, \mu, f)\) where:
+            \begin{itemize}
+                \item \(S\) is a finite or countably infinite set called the \emph{instance space} of \(A\).
+                \item \(\forall x\in S\ R(x)\) is the set of \emph{feasible solutions} for the instance \(x\).
+                \item \(\forall x\in S, \forall y \in R(x)\ \mu(x, y)\in\reals_+\) is the measure of \(y\).
+            \end{itemize}
+        \end{definition}
+
+        Using the above definition, \textsf{TSP} can be defined as \(\textsf{TSP} = (S, R, \mu, f)\) with:
+        \begin{itemize}
+            \item \(S\) the set of all complete weighted graphs.
+            \item For \(G\in S\), \(R(G)\) is the set of all hamiltonian cycles in \(G\).
+            \item For a hamiltonian cycle \(C\) of \(G\), \(\mu(G, C)\) is the length of \(C\).
+            \item Finally, the problem is to minimize \(\mu(G, C)\).
+        \end{itemize}
+
+
+    \subsection{Decision Problems}
+
+        In contrast to optimization problems, which can have a very large if finite space of solutions, an instance of a decision problem has a binary answer. Hence, decision problems are significantly easier to define and analyze from a theoretical point of view. Formally speaking, we define a decision problem as:
+
+        \begin{definition}[Decision problem]\ \\
+            A decision problem \(A\) is given by a pair \(A \colonequals (S, B)\) where:
+            \begin{itemize}
+                \item \(S\) is a set called the \emph{instance space} of \(A\).
+                \item \(B \subset S\) is the set of \emph{positive instances} of \(A\) (that is instances for which the answer is yes).
+            \end{itemize}
+        \end{definition}
