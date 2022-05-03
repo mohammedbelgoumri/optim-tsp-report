@@ -8,14 +8,56 @@ Throughout this document, we will often find ourselevs in need of a method to ob
 
     For historical (and technical) reasons, most of the work in this branch has been done around a special type of problem called \emph{decision problems}. A decision problem is a problem that has a binary answer, that is, given an instance (or an input) of the problem, we compute an answer (or output) that is an element of some preknown set with cardinality 2. The sets \(\{0, 1\}\), \(\{\texttt{false}, \texttt{true}\}\), and \(\{\texttt{no}, \texttt{yes}\}\), are common examples of such a set, the latter of which will be used in the rest of this discussion.
 
-    A decision problem can therefore be defined as the problem of evaluating some \emph{computable}\footnote{The model of computation is not important when defining decision problems, but it becomes so when discussing their complexity. The turing machine is the model we will use throughout this work.} function \(f: E \rightarrow \{0, 1\}\) where \(E\) is some set of inputs\footnote{Rigorously, for it to be the input spave to a turing machine, \(E\) must be equal to \(\Sigma^\ast\) for some alphabet \(\Sigma\). We will ommit this technicality for the sake of convinience.}. These functions can be mapped to decidable subsets of \(E\) by associating every such a set \(A\) with its characteristic function \(\mathbbm{1}_A\). This correspondence is what motivates Definition~\ref{def:decision-problem} of decidable problems.
+    A decision problem can therefore be defined as the problem of evaluating some \emph{computable}\footnote{The model of computation is not important when defining decision problems, but it becomes so when discussing their complexity. The turing machine is the model we will use throughout this work.} function \(f: S \rightarrow \{0, 1\}\) where \(S\) is some set of inputs.
+    % \footnote{Rigorously, for it to be the input spave to a turing machine, \(S\) must be equal to \(\Sigma^\ast\) for some alphabet \(\Sigma\). We will ommit this technicality for the sake of convinience.}
+    These functions can be mapped to decidable subsets of \(S\) by associating every such a set \(P\) with its characteristic function \(\mathbbm{1}_P\). This correspondence is what motivates Definition~\ref{def:decision-problem} of decidable problems.
 
     \begin{definition}[Decision Problem]\ \\
         \label{def:decision-problem}
-        A decision problem is a pair \(X = \langle E, A \rangle\) where \(E\) is a countable set called the \emph{instance space} and \(A \subset E\) is called the set of \emph{positive instances}. We say the problem \(X\) is decidable iff \(A\) is decidable (i.e. if \(\mathbbm{1}_A\) is computable).
+        A decision problem is a pair \(X = \langle S, P \rangle\) where \(S\) is a countable set called the \emph{instance space} and \(P \subset S\) is called the set of \emph{positive instances}. We say the problem \(X\) is decidable iff \(P\) is decidable (i.e. if \(\mathbbm{1}_P\) is computable).
     \end{definition}
 
-    The complexity of a decision problem is given by two pieces of information, the first being its time complexity (intuitively, this is the runtime of the \emph{fastest} turing machine deciding the problem), and the second its space complexity (the \emph{minimal} number of distinct visited cells on the tape of turing machine deciding the problem).
+    To better understand Definition~\ref{def:decision-problem}, we consider Examples~\ref{ex:decision-problems},
+    ~and~\ref{ex:sat}, the latter of which is of particular historical significance in the context of complexity theory.
+    \begin{example}[A Number of Decision Problems]\ \\
+        \label{ex:decision-problems}
+        \begin{itemize}
+            \item \textsf{PRIME} is the problem \(\langle \naturals, P\rangle\) where \(P\) is the set of all prime numbers.
+            \item \textsf{HAM}, or the \emph{hamiltonicity problem} is the problem \(\langle S, P \rangle\) where \(S\) is the set of all undirected graphs and \(P\) is the set of all hamiltonian graphs.
+            \item \textsf{PAIR} or the pairity problem is the problem \(\langle \{0, 1\}^\ast, P \rangle\) where 
+            \[P = \left\{w\in \{0, 1\}^\ast\big| |w|_1 \equiv 0 \mathrm{\ mod\ } 2 \right\}\]
+        \end{itemize}
+    \end{example}
+
+    \begin{example}[\textsf{SAT}]\ \\
+        \label{ex:sat}
+        The \emph{satesfiability problem of boolean logic}, or \textsf{SAT}, is the problem \(\langle S, P\rangle\) where \(S\) is the set of all formulae of boolean logic and \(P\) is the set of all \emph{satisfiable} formulae. A formula \(\varphi \in S\) is satesfiable iff it has a satisfying assignment or a \emph{model}, that is, if its negation is not a tautology. 
+    \end{example}
+
+    The complexity of a decision problem is given by two pieces of information, the first being its time complexity (intuitively, this is the runtime of the \emph{fastest} turing machine deciding the problem), and the second its space complexity (the \emph{minimal} number of distinct visited cells on the tape of turing machine deciding the problem). The rigorous definitions of these quantities are given in Appendix~\ref{app:computability}. We will use the notions of \emph{algoorithms}, \emph{runtime}, and \emph{memory usage} as intuitive analogues of Turing machines, runtime and space complexity respectively.
+
+    As is common when discussing complexity, we will sort problems in a hierarchy of \emph{complexity classes}. These complexity classes are based on the asymptotic behaviour of the time and space complexities instead of the exact runtime or memory usage of a particular algorithm solving a particular problem. A few important complexity classes are given by Definition~\ref{def:complexity-classes}~\cite{langages-formels}.
+
+    \begin{definition}[Most Important Complexity Classes]\ \\
+        \label{def:complexity-classes}
+        Let \(f: \naturals \rightarrow \reals_+\) be a function. We define the following classes of problems:
+        \begin{itemize}
+            \item \(\textsf{TIME}(f(n))\) is the set of probelms \(X\) for which there exists a deterministic Turing machine \(\mathcal{M}\) that decides \(X\) such that \(t_{\mathcal{M}}(n) = O(f(n))\).
+            \item 
+            \(\textsf{NTIME}(f(n))\) is the set of probelms \(X\) for which there exists a nondeterministic Turing machine \(\mathcal{M}\) that decides \(X\) such that \(t_{\mathcal{M}}(n) = O(f(n))\).    
+        \end{itemize}
+        From these two, we can define the following classes:
+        \begin{align*}
+            \textsf{P} = \bigcup\limits_{k\in\naturals} \textsf{TIME}\left(n^k\right)& &
+            \textsf{NP} = \bigcup\limits_{k\in\naturals} \textsf{NTIME}\left(n^k\right) \\
+            \textsf{EXPTIME} = \bigcup\limits_{k\in\naturals} \textsf{TIME}\left(2^{n^k}\right) & &
+            \textsf{NEXPTIME} = \bigcup\limits_{k\in\naturals} \textsf{NTIME}\left(2^{n^k}\right) \\
+        \end{align*}
+    \end{definition}
+
+    The list of complexity classes given by Definition~\ref{def:complexity-classes} is of course far from complete. It is however largely sufficient for the purposes of this investigation. In fact, we will mostly be dealing with the classes \textsf{P} and \textsf{NP} exclusively.
+
+    
 
 
     % A minor technical obstacle to the use of computational complexity theory on the \textsf{TSP} is the fact that this theory only considers so-called decision problems. The \textsf{TSP} beeing an optimization problem, is therefore formally speaking out of the scope of this framework.
