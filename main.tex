@@ -6,6 +6,7 @@
 % \usepackage[T1]{fontenc}
 \usepackage{array}
 \usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{bbm}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
@@ -20,6 +21,8 @@
 	citecolor=black,
 }
 \usepackage{geometry}
+\usepackage{appendix}
+
 \graphicspath{{assets/images/}}
 \newlength\figureheight
 \newlength\figurewidth
@@ -93,5 +96,8 @@
 	\include{general-concepts}
 	\include{problem-statement}
 	\include{barnch-and-boound}
+	\begin{appendices}
+		\include{computability}
+	\end{appendices}
 	\printbibliography
 \end{document}
