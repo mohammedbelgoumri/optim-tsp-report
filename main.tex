@@ -65,6 +65,10 @@
 \usepackage{float}
 \usepackage{subfig}
 
+\usepackage{glossaries}
+% \usepackage{nomencl}
+\makeglossaries
+
 \setlength{\parskip}{.4cm}
 
 \newtheorem{theorem}{Theorem}[chapter]
@@ -93,6 +97,9 @@
 	\tableofcontents
     \addcontentsline{toc}{chapter}{Table of contents}
 	\include{introduction}
+	\chapter*{Symbols and Notation}
+	\addcontentsline{toc}{chapter}{Symbols and Notation}
+	\printglossary
 	\include{general-concepts}
 	\include{problem-statement}
 	\include{barnch-and-boound}
