@@ -11,3 +11,46 @@ The point above is valid for all pairs of classes for which we have one inclusio
     \[\forall i \in S_1\ i \in P_1 \iff f(i) \in P_2\]
     If such a reduction exists, \(X\) is said to be \emph{polynomially reducible} to \(Y\), which we denote by \(X \ple Y\).
 \end{definition}
+
+One can show that \(\ple\) is both transitive, and reflexive (a quasi-order on decision problems) without too much difficulty. Furthermore, the relation \(ple\) can be shown to satisfy Proposition~\ref{prop:ple-p-p} which will become very importent once \textsf{NP}-completeness is defined.
+\begin{proposition}\ \\
+    \label{prop:ple-p-p}
+    Let \(X = \langle S_1, P_1\rangle\) and \(Y =\langle S_2, P_2\rangle\) be two decision problems. If \(X \ple Y\) and \(Y \in \textsf{P}\), then \(X \in \textsf{P}\).
+\end{proposition}
+\begin{proof}\ \\
+    The composition of the Turing machine that computes the polynomial reduction of \(X\) to \(Y\) and the one that decides \(Y\) in polynomial time is a polynomial time Turing machine that decides \(X\).
+\end{proof}
+
+We are now ready to define the notion of \textsf{NP}-completeness.
+\begin{definition}[\textsf{NP}-hardness, \textsf{NP}-completeness]\ \\
+    A problem \(X\) is \textsf{NP}-hard if and only if :
+    \[\forall Y \in \textsf{NP}\ Y \ple X\]
+    A problem \(X\) is \textsf{NP}-complete if and only if \(X\) is \textsf{NP}-hard and \(X\in\textsf{NP}\).
+\end{definition}
+
+Under our intuitive interpretation of \(\ple\), an \textsf{NP}-hard problem is a problem that is at least as difficult as any problem in \textsf{NP}. An \textsf{NP}-complete one is then the hardest problem in \textsf{NP}. It stands to reason then that if an \textsf{NP}-hard problem \(X\) is in \textsf{P}, we would have \(\textsf{NP} \subset \textsf{P}\) and hence \(\textsf{P}= \textsf{NP}\). This is in deed the case as affirmed by Corollary~\ref{cor:p=np}.
+
+\begin{corollary}
+    \label{cor:p=np}
+    If \(\textsf{P} \cap \textsf{NP}\mathrm{-hard} \neq \emptyset\), then \(\textsf{P}=\textsf{NP}\)
+\end{corollary}
+
+\begin{proof}\ \\
+    Let \(X\) be an \textsf{NP}-hard problem that is also in \textsf{P}, and let \(Y\in\textsf{NP}\). By definition of \textsf{NP}-hardness, \(Y\ple X\), and by Proposition~\ref{prop:ple-p-p} and the fact that \(X\in\textsf{P}\), \(Y\in\textsf{P}\).
+    Therefore, \(\textsf{NP} \subset \textsf{P}\), and hence \(\textsf{P}=\textsf{NP}\).
+\end{proof}
+
+Although the idea of \textsf{NP}-completeness is promising, it is not immediately obvious how it makes approaching \textsf{P} vs \textsf{NP} easier. It would seem that proving a problem is \textsf{NP}-hard is as difficult as solving \textsf{P} vs \textsf{NP}. This is once more due to the unfathomable vastness of \textsf{NP}. Fortunately, this initial impression proved to be a false one, since we know of many \textsf{NP}-hard and \textsf{NP}-complete problems. The first problem proved to be \textsf{NP}-complete is the problem \textsf{SAT} that we invoked in Example~\ref{ex:sat}, and that was proven to be \textsf{NP}-complete in 1971.
+
+\begin{theorem}[Cook Levin]\ \\
+    \textsf{SAT} is \textsf{NP}-complete.
+\end{theorem}
+
+\begin{proof}\ \\
+    The proof is twofold. First, we know that \(\textsf{SAT} \in \textsf{NP}\), and second, that it is \textsf{NP}-hard. The first part is more or less trivial, the second by comparaison is very technical. It requires finding a polynomial reduction of every single problem in \textsf{NP} to \textsf{SAT}.
+
+    \begin{enumerate}
+        \item \underline{\(\textsf{SAT} \in \textsf{NP}\):}
+        
+    \end{enumerate}
+\end{proof}
