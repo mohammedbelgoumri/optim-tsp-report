@@ -54,13 +54,25 @@ As is common when discussing complexity, we will sort problems in a hierarchy of
     \end{align*}
 \end{definition}
 
-The list of complexity classes given by Definition~\ref{def:complexity-classes} is of course far from complete. It is however largely sufficient for the purposes of this investigation. In fact, we will mostly be dealing with the classes \textsf{P} and \textsf{NP} exclusively.
+The list given by Definition~\ref{def:complexity-classes} is of course far from complete. In fact, a very easy way to extend it is to add for every class \(C\) its \emph{dual} class co-\({C} \colonequals \{\overline{X}| X\in C\}\) of complements of problems in \(C\).
+It is however largely sufficient for the purposes of this investigation. In fact, we will mostly be dealing with the classes \textsf{P} and \textsf{NP} exclusively.
+
+It is quite straightforward to verify the following inclusions between the classes defined thus far:
+\[
+    \begin{array}{ccccccc}        
+        \textsf{P} &\subset& \textsf{NP} &\subset& \textsf{EXPTIME} &\subset& \textsf{NEXPTIME} \\
+        \textsf{P} &\subset& \textsf{co-NP} &\subset& \textsf{EXPTIME} &\subset& \textsf{co-NEXPTIME}
+    \end{array}
+\]
+
+However, it is exeedingly difficult to prove strict inclusion for most pairs. As a matter of fact, the problem of determining whether \(\textsf{P} = \textsf{NP}\) is an open one, as well as that of finding the intersection between \(C\) and co-\(C\) for \(C\in\{\textsf{NP}, \textsf{NEXPTIME}\}\). The Venn diagram of Figure~\ref{fig:classes-venn} shows the known inclusions (opting for strictness for unknown pairs).
 
 
 \begin{figure}
     \begin{center}
        \includegraphics[width=10cm]{classes-venn.png}
     \end{center}
-    \caption{The list of complexity classes}
+    \caption{A Venn diagram of the classes defined so far.}
+    \label{fig:classes-venn}
 \end{figure}
 
