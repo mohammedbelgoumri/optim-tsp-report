@@ -1,0 +1,13 @@
+\subsection{Reducibility and Completeness}
+
+As we have seen in the previous section, it is currently unknown whether \(\textsf{P} = \textsf{NP}\). As far as we know, it could be as easy to decide a problem with a deterministic machine as to decide it with a nondeterministic machine. We don't know if problems in \textsf{NP} are \emph{strictly harder} thans those in \textsf{P} (even though we suspect that they are). This is hardly surprising given the vastness of \textsf{NP}. In order to prove \(\textsf{P} = \textsf{NP}\), one must find a polynomial time algorithm for \emph{every} problem in \textsf{NP}. And in order to prove that \(\textsf{P} \neq \textsf{NP}\), one must prove that for at least one problem in \textsf{NP}, \emph{all algorithms} are not polynomial time (this is admittedly an easier task than proving equality).
+
+The point above is valid for all pairs of classes for which we have one inclusion but are uncertain of the other (\textsf{NP} and \textsf{EXPTIME} for example). The notio of complexity tries to simplify the task of proving inequality of two classes by reducing it to the task of proving that \emph{one particular} problem (intuitively thought of as the hardest problem in that class) of the supposedly bigger class is actually in the smaller one. These \emph{most difficult problems} are what the concept of completeness aims to formalize. In order to define them, we must first address the question of how to compare the difficulty of two problems, which is exactly what the relation of \emph{reducibility} introduced in Definition~\ref{def:polynomial-reduction} attempts to do.
+
+\newcommand{\ple}{\preceq_\textsf{P}}
+\begin{definition}[Polynomial Reduction]\ \\
+    \label{def:polynomial-reduction}
+    Let \(X = \langle S_1, P_1\rangle\) and \(Y =\langle S_2, P_2\rangle\) be two decision problems. A \emph{polynomial reduction} of \(X\) to \(Y\) is a function \(f:S_1 \rightarrow S_2\) computable by a deterministic Turing machine in polynomial time such that:
+    \[\forall i \in S_1\ i \in P_1 \iff f(i) \in P_2\]
+    If such a reduction exists, \(X\) is said to be \emph{polynomially reducible} to \(Y\), which we denote by \(X \ple Y\).
+\end{definition}
