@@ -58,5 +58,12 @@ Although the idea of \textsf{NP}-completeness is promising, it is not immediatel
     \textsf{SAT} is \textsf{NP}-complete.
 \end{theorem}
 
-Now that we have one problem that we know is \textsf{NP}-complete, it becomes significantly easier to prove that a given problem is \textsf{NP}-hard. Using Proposition~\ref{prop:ple-nph}, we can show any problem is \textsf{NP}-hard by reducing a known \textsf{NP}-hard problem to it.
+Now that we have one problem that we know is \textsf{NP}-complete, it becomes significantly easier to prove that a given problem is \textsf{NP}-hard. Using Proposition~\ref{prop:ple-nph}, we can show any problem is \textsf{NP}-hard by reducing a known \textsf{NP}-hard problem to it. This is what we will do in the following example by proving 3-\textsf{SAT} is \textsf{NP}-complete.
+
+\begin{example}\ \\
+    \label{ex:3sat-npc}
+    An instance of 3-\textsf{SAT} is a conjunction of clauses with at most 3 literals each and is positive iff it is satisfiable. To show that 3-\textsf{SAT} is \textsf{NP}-complete, we will reduce \textsf{SAT} to it. It is technechally necessary to show that \(3-\textsf{SAT}\in\textsf{NP}\) too, but this is easy given that it is a subproblem of \textsf{SAT} which is already known to be in \textsf{NP}. We will therefore focus on proving it \textsf{NP}-hard.
+
+    To reduce \textsf{SAT} to 3-\textsf{SAT}, we must find for every formula \(\varphi\) of boolean logic a formula \(\varphi'\) in 3CNF, such that \(\varphi'\) is satisfiable iff \(\varphi\) is satisfiable.
+\end{example}
 
