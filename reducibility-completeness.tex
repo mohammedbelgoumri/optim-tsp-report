@@ -15,13 +15,13 @@ The point above is valid for all pairs of classes for which we have one inclusio
 One can show that \(\ple\) is both transitive, and reflexive (a quasi-order on decision problems) without too much difficulty. Furthermore, the relation \(ple\) can be shown to satisfy Proposition~\ref{prop:ple-p-p} which will become very importent once \textsf{NP}-completeness is defined.
 \begin{proposition}\ \\
     \label{prop:ple-p-p}
-    Let \(X = \langle S_1, P_1\rangle\) and \(Y =\langle S_2, P_2\rangle\) be two decision problems. If \(X \ple Y\) and \(Y \in \textsf{P}\), then \(X \in \textsf{P}\).
+    Let \(X \) and \(Y \) be two decision problems. If \(X \ple Y\) and \(Y \in \textsf{P}\), then \(X \in \textsf{P}\).
 \end{proposition}
 \begin{proof}\ \\
     The composition of the Turing machine that computes the polynomial reduction of \(X\) to \(Y\) and the one that decides \(Y\) in polynomial time is a polynomial time Turing machine that decides \(X\).
 \end{proof}
 
-We are now ready to define the notion of \textsf{NP}-completeness.
+We now define \textsf{NP}-completeness.
 \begin{definition}[\textsf{NP}-hardness, \textsf{NP}-completeness]\ \\
     A problem \(X\) is \textsf{NP}-hard if and only if :
     \[\forall Y \in \textsf{NP}\ Y \ple X\]
