@@ -64,6 +64,91 @@ Now that we have one problem that we know is \textsf{NP}-complete, it becomes si
     \label{ex:3sat-npc}
     An instance of 3-\textsf{SAT} is a conjunction of clauses with at most 3 literals each and is positive iff it is satisfiable. To show that 3-\textsf{SAT} is \textsf{NP}-complete, we will reduce \textsf{SAT} to it. It is technechally necessary to show that \(3-\textsf{SAT}\in\textsf{NP}\) too, but this is easy given that it is a subproblem of \textsf{SAT} which is already known to be in \textsf{NP}. We will therefore focus on proving it \textsf{NP}-hard.
 
-    To reduce \textsf{SAT} to 3-\textsf{SAT}, we must find for every formula \(\varphi\) of boolean logic a formula \(\varphi'\) in 3CNF, such that \(\varphi'\) is satisfiable iff \(\varphi\) is satisfiable.
+    To reduce \textsf{SAT} to 3-\textsf{SAT}, we must find for every formula \(\varphi\) of boolean logic a formula \(\varphi^\prime\) in 3CNF, with size polynomial in that of \(\varphi\), such that \(\varphi^\prime\) is satisfiable iff \(\varphi\) is satisfiable. We start by considering the \emph{syntax tree} of \(\varphi\)\footnote{For example, the syntax tree of the formula \(\varphi\) of Example~\ref{ex:sat} is shown in Figure~\ref{fig:3sat-npc-syntax-tree}.}. We label each internal node of this tree with a new variable (the leaves are associated with the variables of \(\varphi\)), we get the tree o Figure~\ref{fig:3sat-npc-var-tree}.
+
+    Next, we associate each new variable with an equivalance according to the following rules:
+    \begin{itemize}
+        \item If the node labeled by the variable \(x_i\) is \(\vee\), we associate it with the formula \(x_i \leftrightarrow x_j \vee x_k\) where \(x_j\) and \(x_k\) are the children of \(x_i\).
+        \item If it is labeled with \(\wedge\), we associate it with the formula \(x_i \leftrightarrow x_j \wedge x_k\).
+        \item If it is labeled with \(\neg\), we associate with the formula \(x_i \leftrightarrow \neg x_j\).
+    \end{itemize}
+
+    \(\varphi^\prime\) is then the conjunction of these equivalances.
+
+    We then replace every equivalence with a conjunction of clauses using the following logical equivalences:
+    \[
+        \begin{array}{ccl}
+            x \leftrightarrow \neg y &\equiv& (x\vee\neg y)\wedge (\neg x \vee y) \\
+            x \leftrightarrow y \wedge z &\equiv& (x\vee\neg y\vee\neg z) \wedge 
+            (\neg x \wedge y) \wedge (\neg x \wedge z) \\
+            x \leftrightarrow y \wedge z &\equiv& (\neg x\vee y\vee z) \wedge 
+            (x \wedge\neg y) \wedge (x \wedge\neg z) \\
+        \end{array}
+    \]
+
+    The formula \(\varphi^\prime\) thus obtained is logically equivalent to the original formula \(\varphi\), and is by extension satisfiable iff \(\varphi\) is satisfiable. Furthermore, since the size of the syntax tree is proportional to the size of \(\varphi\), so is the size of \(\varphi^\prime\) (i.e. this reduction is in deed polynomial). It then follows that 
+    \(\textsf{SAT} \ple 3\textsf{-SAT}\), and by Proposition~\ref{prop:ple-nph}, that 3-\textsf{SAT} is \textsf{NP}-complete.
+    \begin{figure}
+        \begin{center}
+            \begin{tikzpicture}[level 1/.style={sibling distance=30mm},level 2/.style={sibling distance=15mm}]
+                \node {\(\vee\)}
+                child{
+                    node {\(\wedge\)}
+                    child{
+                        node {\(\vee\)}
+                        child {node {\(x_1\)}}
+                        child {
+                            node {\(\neg\)}
+                            child {node {\(x_2\)}}
+                        }
+                    }
+                    child {node {\(x_3\)}}
+                }
+                child {
+                    node {\(\wedge\)}
+                    child {node {\(x_2\)}}
+                    child {
+                        node {\(\neg\)}
+                        child {node {\(x_3\)}}
+                    }
+                };
+            \end{tikzpicture}
+        \end{center}
+        \caption{Syntax tree of the formula \(\varphi\) of Example~\ref{ex:sat}}
+        \label{fig:3sat-npc-syntax-tree}
+    \end{figure}
+
+    \begin{figure}
+        \begin{center}
+            \begin{tikzpicture}[level 1/.style={sibling distance=30mm},level 2/.style={sibling distance=15mm}]
+                \node {\(x_4\)}
+                child{
+                    node {\(x_5\)}
+                    child{
+                        node {\(x_6\)}
+                        child {node {\(x_1\)}}
+                        child {
+                            node {\(x_7\)}
+                            child {node {\(x_2\)}}
+                        }
+                    }
+                    child {node {\(x_3\)}}
+                }
+                child {
+                    node {\(x_8\)}
+                    child {node {\(x_2\)}}
+                    child {
+                        node {\(x_9\)}
+                        child {node {\(x_3\)}}
+                    }
+                };
+            \end{tikzpicture}
+        \end{center}
+        \caption{Syntax tree of Figure~\ref{fig:3sat-npc-syntax-tree} labeled with new variables.}
+        \label{fig:3sat-npc-var-tree}
+    \end{figure}
 \end{example}
+
+    Finally, we take as \(\varphi^\prime\) the conjunction of the formulae in the list above.
+Using similar techniques, countless problems have been shown to be \textsf{NP}-complete. Examples include \textsf{CLIQUE} (the problem of deciding whether a graph has a \(k\)-clique for \(k\in\naturals\)),  \textsf{VERTEX-COVER} (the problem of deciding whether a graph has a covering set of vertices with cardinality \(k\) for \(k\in\naturals\)), and crucially for our study, \textsf{HAM} (mentioned in Example~\ref{ex:decision-problems}).
 
