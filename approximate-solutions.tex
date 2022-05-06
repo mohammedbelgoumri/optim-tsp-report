@@ -17,16 +17,25 @@ Despite them being exact, the algorithms we introduced so far are not always pra
     \begin{algorithm}
         \caption{Nearest Neighbor}
         \label{algo:nearest-neighbor}
-        \begin{algorithmic}[1]
-            \Require \texttt{cites} \Comment{List of cities represented as coordinate pairs}
-            \Require \texttt{origin} \Comment{Starting city}
-            \State path \(\gets \emptyset\) 
-            \For{\texttt{city} \(in\) \texttt{cities}}
-                \State $sum\gets sum+i$
-            \EndFor
-        \Ensure path
-        \end{algorithmic}
+            \DontPrintSemicolon
+            \KwIn{\texttt{cities}, \texttt{origin}} \tcp{represented as coordinate pairs}
+            \Begin{
+                \texttt{path} \(\gets\) \texttt{[origin]}\;
+                \texttt{unvisited} \(\gets\) \texttt{cities} \(\backslash\) \texttt{[origin]}\;
+                \While{unvisited}{
+                    \texttt{last} \(\gets\) \texttt{path[-1]}\;
+                    \ForAll{city \(\in\) cities}{
+                        \If{city \(\notin\) s}{
+                            fuck
+                        }
+                    }
+                }
+                \KwOut{\texttt{path}}
+            }
     \end{algorithm}
 
+    \subsection{Complexity Analysis}
+    
+    
 
     \section{2-OPT and 3-OPT}
