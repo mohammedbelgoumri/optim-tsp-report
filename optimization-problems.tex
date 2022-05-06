@@ -13,9 +13,33 @@ Despite their ubiquity, decision problems are not always powerful enough to mode
         \item \(g\in\{\min, \max\}\) is the \emph{goal} of the problem.
     \end{enumerate}
 
+    The following notation will be used throughout the rest of this document to refer to optimization problems
+    \[
+       A = \underset{s\in F(x)}{g}\left\{\mu_x(s)\right\}    
+    \]
+    If \(g =\min\), the problem is called a \emph{minimization problem}, otherwise, it is called a \emph{maximization problem}.
+
     For an instance \(x\), we define the \emph{objective function} \(\mu_x:F(x) \rightarrow \reals_+, s \mapsto \mu(x, s)\), the \emph{optimum} \(\mathrm{opt}(x)\colonequals g\left\{\mu(x, s)\big|s\in F(x)\right\}\), and the set of \emph{optimal solutions} 
     \(\mu_x^{-1}\left(\left\{\mathrm{opt}(x)\right\}\right)\). Such an instance is said to be \emph{solvable} if \(F(x)\neq\emptyset\).
 
     By \emph{solving} \(A\), we mean finding a computable function \(f:X\rightarrow S\) (also called a solver) such that for every solvable \(x\in X\), \(f(x)\in F(x)\). If \(f\) has the additional property that for every solvable \(x\in X\), \(f(x)\) is an optimal solution to \(x\), we say that \(f\) is an \emph{exact} solver of \(A\).
 \end{definition}
 
+
+To understand further clarify Definition~\ref{def:optimization-problem}, we will consider a few examples of optimization problems.
+
+\begin{example}\ \\
+    \begin{enumerate}
+        \item \textsf{LP} or Linear Programming is the problem defined by
+        \begin{itemize}
+            \item \textbf{The instance space}: An instance is a triplet \((A, b, c)\) where \(b, c\in\reals^n\), and \(A\in\mathcal{M}_n(\reals)\) for some \(n\in\mathbb{N}\).
+            \item \textbf{The solution space}: A solution is a vector \(x\in\reals_+^n\).
+            \item \textbf{Feasible solutions (constraints)}: A solution \(x\) is feasible iff \(Ax\le b\).\footnote{Inequality is taken componentwise.}
+            \item \textbf{Objective function}: \(\mu_{A,b,c}(x)=^tcx\).
+            \item \textbf{Goal}: \textsf{LP} can be either a maximization or a minimization problem.
+        \end{itemize}
+        The maximization variant of \textsf{LP} can then be denoted by
+        \[\max\limits_{Ax\le b}\left\{^tcx\right\}\]
+        \item \textsf{KNAPSACK} is the problem 
+    \end{enumerate}
+\end{example}
