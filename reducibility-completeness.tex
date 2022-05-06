@@ -89,7 +89,7 @@ Now that we have one problem that we know is \textsf{NP}-complete, it becomes si
 
     We get a formula \(\varphi^\prime\) in 3CNF, which is logically equivalent to\(\varphi\) (and is a fortiori satisfiable iff \(\varphi\) is satisfiable). Furthermore, since the size of the syntax tree is proportional to the size of \(\varphi\), so is the size of \(\varphi^\prime\) (i.e. this reduction is in deed polynomial). It then follows that
     \(\textsf{SAT} \ple 3\textsf{-SAT}\), and by Proposition~\ref{prop:ple-nph}, that 3-\textsf{SAT} is \textsf{NP}-complete.
-    \begin{figure}
+    \begin{figure}[htb]
         \begin{center}
             \begin{tikzpicture}[level 1/.style={sibling distance=30mm},level 2/.style={sibling distance=15mm}]
                 \node {\(\vee\)}
@@ -119,7 +119,7 @@ Now that we have one problem that we know is \textsf{NP}-complete, it becomes si
         \label{fig:3sat-npc-syntax-tree}
     \end{figure}
 
-    \begin{figure}
+    \begin{figure}[htb]
         \begin{center}
             \begin{tikzpicture}[level 1/.style={sibling distance=30mm},level 2/.style={sibling distance=15mm}]
                 \node {\(x_4\)}
