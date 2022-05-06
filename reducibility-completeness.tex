@@ -1,6 +1,6 @@
 \subsection{Reducibility and Completeness}
 
-As we have seen in the previous section, it is currently unknown whether \(\textsf{P} = \textsf{NP}\). As far as we know, it could be as easy to decide a problem with a deterministic machine as it is to decide it with a nondeterministic one. We don't know if problems in \textsf{NP} are \emph{strictly harder} thans those in \textsf{P} (even though we suspect them to be). This is hardly surprising given the vastness of \textsf{NP}. In order to prove \(\textsf{P} = \textsf{NP}\), one must find a polynomial time algorithm for \emph{every} problem in \textsf{NP}. And in order to prove that \(\textsf{P} \neq \textsf{NP}\), one must prove that for at least one problem in \textsf{NP}, \emph{all algorithms} are not polynomial time (this is admittedly an easier task than proving equality).
+As we have seen in the previous section, it is currently unknown whether \(\textsf{P} = \textsf{NP}\). As far as we know, it could be as easy to decide a problem with a deterministic machine as it is to decide it with a nondeterministic one. We don't know if problems in \textsf{NP} are \emph{strictly harder} than those in \textsf{P} (even though we suspect them to be). This is hardly surprising given the vastness of \textsf{NP}. In order to prove \(\textsf{P} = \textsf{NP}\), one must find a polynomial time algorithm for \emph{every} problem in \textsf{NP}. And in order to prove that \(\textsf{P} \neq \textsf{NP}\), one must prove that for at least one problem in \textsf{NP}, \emph{all algorithms} are not polynomial time (this is admittedly an easier task than proving equality).
 
 The point above is valid for all pairs of classes for which we have one inclusion but are uncertain of the other (\textsf{NP} and \textsf{EXPTIME} for example). The notion of completeness simplifies the task of proving inequality of two classes by reducing it to the task of proving that \emph{one particular} problem (intuitively thought of as the hardest problem) in the supposedly bigger class is in deed a member of the smaller one. These \emph{most difficult problems} are what the concept of completeness aims to formalize. In order to define them, we must first address the question of how to compare the difficulty of two problems, which is exactly what the relation of \emph{reducibility} introduced in Definition~\ref{def:polynomial-reduction} allows us to do.
 
@@ -12,7 +12,7 @@ The point above is valid for all pairs of classes for which we have one inclusio
     If such a reduction exists, \(X\) is said to be \emph{polynomially reducible} to \(Y\), which we denote by \(X \ple Y\).
 \end{definition}
 
-One can show that \(\ple\) is both transitive, and reflexive (a quasi-order on decision problems) without too much difficulty. Furthermore, the relation \(\ple\) can be shown to satisfy Proposition~\ref{prop:ple-p-p} which will become very importent once \textsf{NP}-completeness is defined.
+One can show that \(\ple\) is both transitive, and reflexive (a quasi-order on decision problems) without too much difficulty. Furthermore, the relation \(\ple\) can be shown to satisfy Proposition~\ref{prop:ple-p-p} which will become very important once \textsf{NP}-completeness is defined.
 \begin{proposition}\ \\
     \label{prop:ple-p-p}
     Let \(X \) and \(Y \) be two decision problems. If \(X \ple Y\) and \(Y \in \textsf{P}\), then \(X \in \textsf{P}\).
@@ -40,7 +40,7 @@ Under our intuitive interpretation of \(\ple\), an \textsf{NP}-hard problem is a
     Therefore, \(\textsf{NP} \subset \textsf{P}\), and hence \(\textsf{P}=\textsf{NP}\).
 \end{proof}
 
-The same intuitive analysis that led us to Corollary~\ref{cor:p=np} suggests that if a problem is harder\footnote{In the \(\ple\) sence.} than an \textsf{NP}-hard problem, then it must be \textsf{NP}-hard as well. This is once again correct as affirmed by Proposition~\ref{prop:ple-nph}.
+The same intuitive analysis that led us to Corollary~\ref{cor:p=np} suggests that if a problem is harder\footnote{In the \(\ple\) sense.} than an \textsf{NP}-hard problem, then it must be \textsf{NP}-hard as well. This is once again correct as affirmed by Proposition~\ref{prop:ple-nph}.
 
 \begin{proposition}\ \\
     \label{prop:ple-nph}
@@ -51,7 +51,7 @@ The same intuitive analysis that led us to Corollary~\ref{cor:p=np} suggests tha
     Let \(X, Y, Z\) be decision problems such that \(X\) is \textsf{NP}-hard and \(X\ple Y\), and \(Z \in\textsf{NP}\). By  \textsf{NP}-hardness of \(X\), \(Z \ple X\), and by transitivity of \(\ple\) we have \(Z \ple Y\). \(Y\) is then \textsf{NP}-hard.
 \end{proof}
 
-Although the idea of \textsf{NP}-completeness is promising, it is not immediately obvious how it makes approaching \textsf{P} vs \textsf{NP} easier. It would seem that proving a problem is \textsf{NP}-hard is as difficult as solving \textsf{P} vs \textsf{NP}. This is once more due to the unfathomable vastness of \textsf{NP}. Fortunately, this initial impression proved wrong. We know of many \textsf{NP}-hard and \textsf{NP}-complete problems. The first problem to be proven \textsf{NP}-complete is the problem \textsf{SAT} we invoked in Example~\ref{ex:sat}. This has beenn done by Stephen Cook and Leonid Levin who proved Theorem~\ref{thm:cook-levin} in 1971. A proof of this theorem is given in~\cite{langages-formels}.
+Although the idea of \textsf{NP}-completeness is promising, it is not immediately obvious how it makes approaching \textsf{P} vs \textsf{NP} easier. It would seem that proving a problem is \textsf{NP}-hard is as difficult as solving \textsf{P} vs \textsf{NP}. This is once more due to the unfathomable vastness of \textsf{NP}. Fortunately, this initial impression proved wrong. We know of many \textsf{NP}-hard and \textsf{NP}-complete problems. The first problem to be proven \textsf{NP}-complete is the problem \textsf{SAT} we invoked in Example~\ref{ex:sat}. This has been done by Stephen Cook and Leonid Levin who proved Theorem~\ref{thm:cook-levin} in 1971. A proof of this theorem is given in~\cite{langages-formels}.
 
 \begin{theorem}[Cook Levin]\ \\
     \label{thm:cook-levin}
@@ -62,18 +62,18 @@ Now that we have one problem that we know is \textsf{NP}-complete, it becomes si
 
 \begin{example}\ \\
     \label{ex:3sat-npc}
-    An instance of 3-\textsf{SAT} is a conjunction of clauses with at most 3 literals each and is positive iff it is satisfiable. To show that 3-\textsf{SAT} is \textsf{NP}-complete, we will reduce \textsf{SAT} to it. It is technechally necessary to show that \(3-\textsf{SAT}\in\textsf{NP}\) too, but this is easy given that it is a subproblem of \textsf{SAT} which is already known to be in \textsf{NP}. We will therefore focus on proving it \textsf{NP}-hard.
+    An instance of 3-\textsf{SAT} is a conjunction of clauses with at most 3 literals each and is positive iff it is satisfiable. To show that 3-\textsf{SAT} is \textsf{NP}-complete, we will reduce \textsf{SAT} to it. It is technically necessary to show that \(3-\textsf{SAT}\in\textsf{NP}\) too, but this is easy given that it is a subproblem of \textsf{SAT} which is already known to be in \textsf{NP}. We will therefore focus on proving it \textsf{NP}-hard.
 
     To reduce \textsf{SAT} to 3-\textsf{SAT}, we must find for every formula \(\varphi\) of boolean logic a formula \(\varphi^\prime\) in 3CNF, with size polynomial in that of \(\varphi\), such that \(\varphi^\prime\) is satisfiable iff \(\varphi\) is satisfiable. We start by considering the \emph{syntax tree} of \(\varphi\)\footnote{For example, the syntax tree of the formula \(\varphi\) of Example~\ref{ex:sat} is shown in Figure~\ref{fig:3sat-npc-syntax-tree}.}. We label each internal node of this tree with a new variable (the leaves are associated with the variables of \(\varphi\)), we get the tree o Figure~\ref{fig:3sat-npc-var-tree}.
 
-    Next, we associate each new variable with an equivalance according to the following rules:
+    Next, we associate each new variable with an equivalence according to the following rules:
     \begin{itemize}
         \item If the node labeled by the variable \(x_i\) is \(\vee\), we associate it with the formula \(x_i \leftrightarrow x_j \vee x_k\) where \(x_j\) and \(x_k\) are the children of \(x_i\).
         \item If it is labeled with \(\wedge\), we associate it with the formula \(x_i \leftrightarrow x_j \wedge x_k\).
         \item If it is labeled with \(\neg\), we associate with the formula \(x_i \leftrightarrow \neg x_j\).
     \end{itemize}
 
-    \(\varphi^\prime\) is then the conjunction of these equivalances.
+    \(\varphi^\prime\) is then the conjunction of these equivalences.
 
     We then replace every equivalence with a conjunction of clauses using the following logical equivalences:
     \[

@@ -18,32 +18,32 @@ To better understand Definition~\ref{def:decision-problem}, we consider Examples
     \begin{itemize}
         \item \textsf{PRIME} is the problem \(\langle \naturals, P\rangle\) where \(P\) is the set of all prime numbers. 
         \item \textsf{HAM}, or the \emph{hamiltonicity problem} is the problem \(\langle S, P \rangle\) where \(S\) is the set of all undirected graphs and \(P\) is the set of all hamiltonian graphs.
-        \item \textsf{CLIQUE}. An instance of this problem is a pair \(\langle G, k\rangle\) wher \(G\) is a graph and \(k\in\naturals\). Such an instance is positive iff \(G\) has a clique of size \(k\). 
-        \item \textsf{PAIR} or the pairity problem is the problem \(\langle \{0, 1\}^\ast, P \rangle\) where 
+        \item \textsf{CLIQUE}. An instance of this problem is a pair \(\langle G, k\rangle\) where \(G\) is a graph and \(k\in\naturals\). Such an instance is positive iff \(G\) has a clique of size \(k\). 
+        \item \textsf{PAIR} or the parity problem is the problem \(\langle \{0, 1\}^\ast, P \rangle\) where 
         \[P = \left\{w\in \{0, 1\}^\ast\big| |w|_1 \equiv 0 \mathrm{\ mod\ } 2 \right\}\]
     \end{itemize}
 \end{example}
 
 \begin{example}[\textsf{SAT}]\ \\
     \label{ex:sat}
-    The \emph{satesfiability problem of boolean logic}, or \textsf{SAT}, is the problem \(\langle S, P\rangle\) where \(S\) is the set of all formulae of boolean logic and \(P\) is the set of all \emph{satisfiable} formulae. A formula \(\varphi \in S\) is satesfiable iff it has a satisfying assignment or a \emph{model}, that is, if its negation is not a tautology. For instance, the formula \(\varphi\) below is satesfiable (by the assignment \(x_1 = 0, x_2 = 0, x_3 = 1\) for example) while \(\psi\) is not.
+    The \emph{satisfiability problem of boolean logic}, or \textsf{SAT}, is the problem \(\langle S, P\rangle\) where \(S\) is the set of all formulae of boolean logic and \(P\) is the set of all \emph{satisfiable} formulae. A formula \(\varphi \in S\) is satisfiable iff it has a satisfying assignment or a \emph{model}, that is, if its negation is not a tautology. For instance, the formula \(\varphi\) below is satisfiable (by the assignment \(x_1 = 0, x_2 = 0, x_3 = 1\) for example) while \(\psi\) is not.
     \begin{align*}
         \varphi& = \left((x_1 \vee \neg x_2) \wedge x_3\right) \vee (x_2 \wedge \neg x_3)\\
         \psi &= \neg (x_1 \vee \neg x_2) \wedge \neg (x_2 \vee \neg x_1)
     \end{align*}
 \end{example}
 
-The complexity of a decision problem is given by two pieces of information, the first being its time complexity (intuitively, this is the runtime of the \emph{fastest} turing machine deciding the problem), and the second its space complexity (the \emph{minimal} number of distinct visited cells on the tape of turing machine deciding the problem). The rigorous definitions of these quantities are given in Appendix~\ref{app:computability}. We will use the notions of \emph{algoorithms}, \emph{runtime}, and \emph{memory usage} as intuitive analogues of Turing machines, runtime and space complexity respectively.
+The complexity of a decision problem is given by two pieces of information, the first being its time complexity (intuitively, this is the runtime of the \emph{fastest} turing machine deciding the problem), and the second its space complexity (the \emph{minimal} number of distinct visited cells on the tape of turing machine deciding the problem). The rigorous definitions of these quantities are given in Appendix~\ref{app:computability}. We will use the notions of \emph{algorithms}, \emph{runtime}, and \emph{memory usage} as intuitive analogues of Turing machines, runtime and space complexity respectively.
 
-As is common when discussing complexity, we will sort problems in a hierarchy of \emph{complexity classes}. These complexity classes are based on the asymptotic behaviour of the time and space complexities instead of the exact runtime or memory usage of a particular algorithm solving a particular problem. A few important complexity classes are given by Definition~\ref{def:complexity-classes}~\cite{complexity-modern}.
+As is common when discussing complexity, we will sort problems in a hierarchy of \emph{complexity classes}. These complexity classes are based on the asymptotic behavior of the time and space complexities instead of the exact runtime or memory usage of a particular algorithm solving a particular problem. A few important complexity classes are given by Definition~\ref{def:complexity-classes}~\cite{complexity-modern}.
 
 \begin{definition}[Most Important Complexity Classes]\ \\
     \label{def:complexity-classes}
     Let \(f: \naturals \rightarrow \reals_+\) be a function. We define the following classes of problems:
     \begin{itemize}
-        \item \(\textsf{TIME}(f(n))\) is the set of probelms \(X\) for which there exists a deterministic Turing machine \(\mathcal{M}\) that decides \(X\) such that \(t_{\mathcal{M}}(n) = O(f(n))\).
+        \item \(\textsf{TIME}(f(n))\) is the set of problems \(X\) for which there exists a deterministic Turing machine \(\mathcal{M}\) that decides \(X\) such that \(t_{\mathcal{M}}(n) = O(f(n))\).
         \item 
-        \(\textsf{NTIME}(f(n))\) is the set of probelms \(X\) for which there exists a nondeterministic Turing machine \(\mathcal{M}\) that decides \(X\) such that \(t_{\mathcal{M}}(n) = O(f(n))\).    
+        \(\textsf{NTIME}(f(n))\) is the set of problems \(X\) for which there exists a nondeterministic Turing machine \(\mathcal{M}\) that decides \(X\) such that \(t_{\mathcal{M}}(n) = O(f(n))\).    
     \end{itemize}
     From these two, we can define the following classes:
     \begin{align*}
@@ -65,7 +65,7 @@ It is quite straightforward to verify the following inclusions between the class
     \end{array}
 \]
 
-However, it is exeedingly difficult to prove strict inclusion for most pairs. As a matter of fact, the problem of determining whether \(\textsf{P} = \textsf{NP}\) is an open one, as well as that of finding the intersection between \(C\) and co-\(C\) for \(C\in\{\textsf{NP}, \textsf{NEXPTIME}\}\). The Venn diagram of Figure~\ref{fig:classes-venn} shows the known inclusions (opting for strictness for unknown pairs).
+However, it is exceedingly difficult to prove strict inclusion for most pairs. As a matter of fact, the problem of determining whether \(\textsf{P} = \textsf{NP}\) is an open one, as well as that of finding the intersection between \(C\) and co-\(C\) for \(C\in\{\textsf{NP}, \textsf{NEXPTIME}\}\). The Venn diagram of Figure~\ref{fig:classes-venn} shows the known inclusions (opting for strictness for unknown pairs).
 
 
 \begin{figure}
