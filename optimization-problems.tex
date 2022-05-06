@@ -1,4 +1,21 @@
 \subsection{Optimization Problems and Their Classification}
 
-Despite their ubiquity, decision problems are not always powerful enough to model a given situation. Combinatorial optimization extends them with a much more general class of problems. Instead of finding a binary answer, a combinatorial optimization problem (or simply, an optimization problem) seeks an \emph{optimal} solution in a discrete \emph{space of options}.
+Despite their ubiquity, decision problems are not always powerful enough to model a given situation. Combinatorial optimization extends them with a much more general class of problems. Instead of finding a binary answer, a combinatorial optimization problem (or simply, an optimization problem) seeks an \emph{optimal} solution in a discrete \emph{space of options}. The optimality of a solution is judged with respect to an \emph{objective function}.
+
+\begin{definition}[Optimization Problem]\ \\
+    \label{def:optimization-problem}
+    An optimization problem is a quintuplet \(A=\langle X, S, F, \mu, g\rangle\) where
+    \begin{enumerate}[label=\emph{(\roman*)}]
+        \item \(X\) is a set of \emph{instances},
+        \item \(S\) is a set of \emph{solutions},
+        \item \(F:X\rightarrow \mathcal{P}(S)\), for \(x\in X\), \(F(x)\) is called the set of feasible solutions of instance \(x\),
+        \item \(\mu:\left\{(x, s) \big| x\in X \wedge s\in F(x) \right\} \rightarrow \reals_+\), \(\mu(x, s)\) is called the \emph{measure} of the solution \(s\) to instance \(x\),
+        \item \(g\in\{\min, \max\}\) is the \emph{goal} of the problem.
+    \end{enumerate}
+
+    For an instance \(x\), we define the \emph{objective function} \(\mu_x:F(x) \rightarrow \reals_+, s \mapsto \mu(x, s)\), the \emph{optimum} \(\mathrm{opt}(x)\colonequals g\left\{\mu(x, s)\big|s\in F(x)\right\}\), and the set of \emph{optimal solutions} 
+    \(\mu_x^{-1}\left(\left\{\mathrm{opt}(x)\right\}\right)\). Such an instance is said to be \emph{solvable} if \(F(x)\neq\emptyset\).
+
+    By \emph{solving} \(A\), we mean finding a computable function \(f:X\rightarrow S\) (also called a solver) such that for every solvable \(x\in X\), \(f(x)\in F(x)\). If \(f\) has the additional property that for every solvable \(x\in X\), \(f(x)\) is an optimal solution to \(x\), we say that \(f\) is an \emph{exact} solver of \(A\).
+\end{definition}
 
