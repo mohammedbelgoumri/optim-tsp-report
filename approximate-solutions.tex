@@ -13,24 +13,26 @@ Despite them being exact, the algorithms we introduced so far are not always pra
     Nearest Neighbor is a \emph{greedy} algorithm. Greedy algorithms are iterative algorithms that take the optimal action at each iteration. The choice of action is based only on the information available at the current state. No backtracking is performed. They are therefore seldom able to find optimal solutions.
 
     Nearest Neighbor in particular explores one branch of the search tree traversed by Branch and Bound. It is in deed equivalent to the first iteration of Branch and Bound. 
-
-    \begin{algorithm}
+    % \AtBeginEnvironment{algorithm}{\let\textnormal\ttfamily}
+    % \BeforeBeginEnvironment{algorithm}{\let\textnormal\ttfamily}
+    \let\textnormal\ttfamily
+        \begin{algorithm}
         \caption{Nearest Neighbor}
         \label{algo:nearest-neighbor}
             \DontPrintSemicolon
-            \KwIn{\texttt{cities}, \texttt{origin}} \tcp{represented as coordinate pairs}
+            \KwIn{{cities}, {origin}} \tcp{represented as coordinate pairs}
             \Begin{
-                \texttt{path} \(\gets\) \texttt{[origin]}\;
-                \texttt{unvisited} \(\gets\) \texttt{cities} \(\backslash\) \texttt{[origin]}\;
-                \While{unvisited}{
-                    \texttt{last} \(\gets\) \texttt{path[-1]}\;
-                    \ForAll{city \(\in\) cities}{
-                        \If{city \(\notin\) s}{
+                {path} \(\gets\) {[origin]}\;
+                {unvisited} \(\gets\) {cities} \(-\) {[origin]}\;
+                \While{{unvisited}}{
+                    {last} \(\gets\) {path[-1]}\;
+                    \ForAll{city {in} cities}{
+                        \If{city {not in} s}{
                             fuck
                         }
                     }
                 }
-                \KwOut{\texttt{path}}
+                \KwOut{{path}}
             }
     \end{algorithm}
 

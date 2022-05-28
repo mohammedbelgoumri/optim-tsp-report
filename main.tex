@@ -72,8 +72,18 @@
 \makeglossaries
 
 % \usepackage[chapter]{algorithm}
-\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
-
+\usepackage[linesnumbered,ruled,lined]{algorithm2e}
+\usepackage{etoolbox}
+% \usepackage{pppro}
+% \SetAlFnt{texttt}
+% \SetKwSty{texttt}
+% \SetFuncSty{texttt}
+% \SetFuncArgSty{texttt}
+% \SetProgSty{texttt}
+% \SetArgSty{texttt}
+% \SetDataSty{texttt}
+% % \SetCommentSty{\texttt}
+% \SetNlSty{\texttt}
 
 \setlength{\parskip}{.4cm}
 
@@ -112,6 +122,7 @@
 		\tableofcontents
 		\addcontentsline{toc}{chapter}{Table of contents}
 		\listoffigures
+		\listofalgorithms
 		\restoregeometry
 	}
 	\include{introduction}
@@ -125,4 +136,5 @@
 		\include{computability}
 	\end{appendices}
 	\printbibliography
+	\addcontentsline{toc}{chapter}{Bibliography}
 \end{document}
