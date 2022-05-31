@@ -15,21 +15,24 @@ Despite them being exact, the algorithms we introduced so far are not always pra
     Nearest Neighbor in particular explores one branch of the search tree traversed by Branch and Bound. It is in deed equivalent to the first iteration of Branch and Bound. 
     % \AtBeginEnvironment{algorithm}{\let\textnormal\ttfamily}
     % \BeforeBeginEnvironment{algorithm}{\let\textnormal\ttfamily}
-    \let\textnormal\ttfamily
+    % \let\textnormal\ttfamily
         \begin{algorithm}
+            \SetKwFunction{nearestNeighbours}{nearestNeighbours}
         \caption{Nearest Neighbor}
         \label{algo:nearest-neighbor}
             \DontPrintSemicolon
-            \KwIn{{cities}, {origin}} \tcp{represented as coordinate pairs}
+            \KwIn{instance} \comment{represented as an adjacency matrix}
             \Begin{
-                {path} \(\gets\) {[origin]}\;
+                path \(\gets\) [0] \;
                 {unvisited} \(\gets\) {cities} \(-\) {[origin]}\;
-                \While{{unvisited}}{
-                    {last} \(\gets\) {path[-1]}\;
-                    \ForAll{city {in} cities}{
-                        \If{city {not in} s}{
-                            fuck
+                \While{unvisited \(\neq \emptyset\)}{
+                    last \(\gets\) path[-1]
+                    \ForAll{city in \nearestNeighbours{last}}{
+                        \If{city \(\notin\) unvisited}{
+                            break
                         }
+                        path \(\gets\) path + [city]\;
+                        visited \(\gets\) visited - [city]
                     }
                 }
                 \KwOut{{path}}
