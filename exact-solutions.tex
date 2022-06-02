@@ -1,6 +1,43 @@
 \chapter{Exact Solutions}
 
+Having stated \TSP, it is natural to consider its solvability and, if so, its solution. It is quite straightforward to show that \TSP{} is solvable. In fact, three exact solvers will be presented in this chapter.
+
 \section{The Naive Approach}
+
+\subsection{The Algorithm}
+
+    In this section, we will examine the simplest approach to solving \TSP. It simply consists of a brute-force search. More specifically, it is an exhaustive search of the solution space (i.e., the set of all possible tours).
+
+    It is easy to see that this indeed is an exact solver, and that \TSP{} is a fortiori solvable. The pseudocode for this approach is given by Algorithm~\ref{algo:naive-tsp}.
+
+    \begin{algorithm}
+        \caption{Naive \TSP}
+        \label{algo:naive-tsp}
+        \SetKwFunction{size}{size}
+        \SetKwFunction{pathLength}{path\_length}
+        \KwIn{instance}
+        \comment{The instance is given an adjacency matrix.}
+
+        \Begin{
+            n \(\gets\) \size{instance}\;
+            best\_length \(\gets\) \(+\infty\)\;
+            \ForEach{\(\sigma\in S_n\)}{
+                \If{\pathLength{instance, \(\sigma\)} \(<\) best\_path}
+                {
+                    best\_path \(\gets\) \(\sigma\)\;
+                    best\_length \(\gets\) \pathLength{instance, \(\sigma\)}\;
+                }
+            }
+            \KwOut{best\_path}
+        }
+    \end{algorithm}
+
+\subsection{Performance Analysis}
+
+Since this is an exact algorithm, it makes no sense to talk about the quality of the solutions it produces, they are always optimal. However, it is possible to assess the performance of the algorithm by examining its computational complexity.
+
+From this point of view, the naive algorithm is very inefficient. In fact, the runtime of Algorithm~\ref{algo:naive-tsp} is proportional to \(|S_n|\) which gives a runtime of \(O\left((n-1)!\right)\).
+
 
 \section{Branch and Bound Methods}
 
