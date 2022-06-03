@@ -1,5 +1,88 @@
 \chapter{Approximate Solutions 2 (Metaheuristics)}
 
     \section{Simulated Annealing}
+
+    \begin{algorithm}
+        \caption{Simulated Annealing \TSP}
+        \label{algo:simulated-annealing}
+
+        \SetKwFunction{random}{random}
+        \SetKwFunction{size}{size}
+        \SetKwFunction{pathLength}{path\_length}
+        \SetKwFunction{copy}{copy}
+        \SetKwFunction{swap}{swap}
+        \KwIn{instance: an instance of TSP, initial\_temperature, cooling\_rate, final\_temperature}
+
+        \Begin{
+            \tcp*[l]{Initialize the temperature}
+            path \(\gets\) \random{\size{instance}}\;
+            cost \(\gets\) \pathLength{path}\;
+            temperature \(\gets\) initial\_temperature\;
+
+            \While(\tcp*[l]{Simulated Annealing}){\(temperature > final_temperature\)}{
+                \tcp*[l]{Generate neighbor path by swapping two cities}
+                nodes\_to\_swap \(\gets\) \random{0, \size{instance}, 2}\;
+                new\_path \(\gets\) \copy{path}\;
+                \swap{new\_path,nodes\_to\_swap}\;
+
+                \tcp*[l]{Accept new path if it is better or if it is accepted with a probability}
+                difference \(\gets\) \pathLength{new\_path} - cost;
+                 \If{\(difference < 0\) or \(\random{0,1} < \exp(-difference/temperature)\)}{
+                    path \(\gets\) new\_path\;
+                    cost \(\gets\) \pathLength{path}\;
+                }
+                \tcp*[l]{Cool down}
+                temperature \(\gets temperature\ast cooling\_rate\)\;
+            }
+        }
+        \KwOut{path}
+    \end{algorithm}
         
     \section{Genetic Algorithm}
+
+    \begin{algorithm}
+        \caption{Genetic Algorithm \TSP}
+        \label{algo:genetic}
+
+        \SetKwFunction{random}{random}
+        \SetKwFunction{size}{size}
+        \SetKwFunction{pathLength}{path\_length}
+        \SetKwFunction{copy}{copy} 
+        \SetKwFunction{argmin}{argmin}
+        \SetKwFunction{cross}{cross}
+
+        \KwIn{instance: an instance of TSP,
+            population\_size,\; 
+            mutation\_rate,\; 
+            max\_generations,\;
+            elitism: boolean 
+        }
+        \Begin{
+            \tcp*[l]{Initialize the population}
+            population \(\gets\) \{\random{\size{instance}} $\ast$ population\_size\}\;
+
+            \tcp*[l]{Evolve the population}
+            \For{generation \(\in \llbracket 1, max\_generations\rrbracket\)}{
+                \tcp*[l]{Selection}
+                \eIf(\tcp*[l]{select best}){elitism}{
+                    selected \(\gets\) \argmin{population, .1, key=\pathLength{}}\;
+                }(\tcp*[l]{select randomly}){
+                    selected \(\gets\) \random{\size{population}, .1}\;
+                }
+
+                \tcp*[l]{Crossover (and mutation)}
+                \For{i \(\in \llbracket 1, population\_size\rrbracket\)}{
+                    \tcp*[l]{Select two parents}
+                    parent1 \(\gets\) selected[\random{}]\;
+                    parent2 \(\gets\) selected[\random{}]\;
+                    child \(\gets\) \cross{parent1, parent2}\;
+                    \If{\(\random{0,1} < mutation\_rate\)}{
+                        \tcp*[l]{Mutate child}
+                        \swap{child, \random{0, \size{instance}, 2}}\;
+                    }
+                    new\_gen \(\gets\) new\_gen + \{child\}\;
+                }
+                population \(\gets\) new\_gen\;
+            }
+        }
+    \end{algorithm}
