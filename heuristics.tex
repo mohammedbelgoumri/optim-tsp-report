@@ -2,22 +2,23 @@
 
 Despite them being exact, the algorithms we introduced so far are not always practical to use on a real world problem. This is due to their computational expense. No efficient exact algorithm known for the \TSP. In fact, under the assumption \(\classP\neq\classNP\), no such algorithm exists. A reasonable alternative to consider is finding an efficient \emph{approximate} algorithm.
 
+Approximate methods sacrifice the exactness of the solution for efficiency. The extent to which we can tolerate loss of accuracy is however limited. A constant time solution is useless if it gives a sufficiently large error.
+
 \section{Nearest Neighbor}
 
-Approximate methods sacrifice the exactness of the solution for efficiency. The extent to which we can tolerate loss of accuracy is however limited. A constant time solution is useless if it gives a sufficiently large error.
 
 All approximate methods are based on a compromise between accuracy and time. Nearest Neighbor being one such method, it is built on one such compromise. It places a higher emphasis on runtime than accuracy. In deed, we will see that Nearest Neighbor is the fastest among the algorithms we will consider. Correspondingly, it also gives the most mediocre solutions.
 
 \subsection{The Algorithm}
 
-Nearest Neighbor is a \emph{greedy} algorithm. Greedy algorithms are iterative algorithms that take the optimal action at each iteration. The choice of action is based only on the information available at the current state. No backtracking is performed. They are therefore seldom able to find optimal solutions.
+Nearest Neighbor is what is called a \emph{construction heuristic}, which means it gives a solution that is feasible by construction, as opposed to \emph{improvement heuristics} which start with a feasible solution and then improve it to get a (locally) optimal solution.
 
-Nearest Neighbor in particular explores one branch of the search tree traversed by Branch and Bound. It is in deed equivalent to the first iteration of Branch and Bound.
-% \AtBeginEnvironment{algorithm}{\let\textnormal\ttfamily}
-% \BeforeBeginEnvironment{algorithm}{\let\textnormal\ttfamily}
-% \let\textnormal\ttfamily
+It is also a \emph{greedy} algorithm. Greedy algorithms are iterative algorithms that take the optimal action at each iteration. The choice of action is based only on the information available at the current state. No backtracking is performed. They are therefore seldom able to find optimal solutions.
+
+Nearest Neighbor in particular explores one branch of the search tree traversed by Branch and Bound. It is in deed equivalent to the first iteration of Branch and Bound. What it does is simply take the shortest edge to a city that has not been visited yet until no such city remains. This is exactly what Algorithm~\ref{algo:nearest-neighbor} does.
+
 \begin{algorithm}
-    \SetKwFunction{nearestNeighbours}{nearestNeighbours}
+    \SetKwFunction{nearestNeighbors}{nearestNeighbors}
     \caption{Nearest Neighbor}
     \label{algo:nearest-neighbor}
     % \DontPrintSemicolon
@@ -26,8 +27,8 @@ Nearest Neighbor in particular explores one branch of the search tree traversed 
     path \(\gets\) [0] \;
     {unvisited} \(\gets\) {cities} \(-\) {[origin]}\;
     \While{unvisited \(\neq \emptyset\)}{
-    last \(\gets\) path[-1]
-    \ForAll{city in \nearestNeighbours{last}}{
+    last \(\gets\) path[-1]\;
+    \ForAll{city in \nearestNeighbors{last}}{
     \If{city \(\notin\) unvisited}{
         break
     }
@@ -39,7 +40,30 @@ Nearest Neighbor in particular explores one branch of the search tree traversed 
     }
 \end{algorithm}
 
-\subsection{Complexity Analysis}
+\subsection{Performance Analysis}
+
+In order to judge the performance of Algorithm~\ref{algo:nearest-neighbor}, two factors must be considered: runtime complexity and solution quality.
+
+On the first measure, Nearest Neighbor does exceedingly well. Not only is its runtime polynomial in the number of cities, the degree of the polynomial is remarkably low. In fact, it can be shown that the runtime of Nearest Neighbor is \(\Theta(n^2)\), \(n\) being the number of cities (which is impressive given the difficulty of \TSP). This is because the main while loop is executed \(n\) times, and each call to \texttt{nearestNeighbors} runs in \(\Theta(n)\) time.
+
+On the second however, it is difficult to come up with an algorithm that gives worse solutions than Nearest Neighbor. It is, in a certain sense, the worst possible solver of \TSP{}. This assessment is made rigorous by Proposition~\ref{prop:nn-anti}.
+
+\begin{proposition}[Anti optimality of Nearest Neighbor]\ \\
+    \label{prop:nn-anti}    
+    Let \(n\in\naturals\), NN be a Nearest Neighbor solver.
+    \begin{enumerate}[label=(\roman*)]
+        \item \(\forall r\in[1, +\infty[\), there exists an instance \(x\) of \TSP{} with  at least\(n\) cities such that \(\mu_x(\mathrm{NN}(x)) \ge r\cdot\mathrm{opt}(x)\) 
+        \item There exists an instance \(x\) of \TSP{} with at least \(n\) cities such that NN gives the worst tour of \(x\).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    See~\cite{tsp-tour}.
+\end{proof}
+
+Worse still, (ii) of Proposition~\ref{prop:nn-anti} persists even when we restrict our interest to the metric \TSP{} (i.e. if we suppose the triangle inequality). This is not the case for almost any other heuristic.
+
+Intuitively, this is because despite the optimality of the first few edges of the nearest neighbor tour, the later edges can be very costly and can't be avoided due to the lack of backtracking.
 
 
 
