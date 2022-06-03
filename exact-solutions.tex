@@ -44,3 +44,31 @@ From this point of view, the naive algorithm is very inefficient. In fact, the r
 
 
 \section{Dynamic Programming}
+
+\begin{algorithm}
+    \caption{Dynamic Programming \TSP}
+    \label{algo:dynamic-tsp}
+    \SetKwFunction{size}{size}
+    \SetKwFunction{distance}{distance}
+    \KwIn{instance :An instance of the TSP}
+    \Begin{
+        \(n \gets \size{instance}\)\;
+        \For{\(k\in\llbracket 1, n-1 \rrbracket\)}{
+            best[\(\{k\}, k\)] \(\gets \distance{0, k}\) \;
+        }
+       \For{\(s\in\llbracket 1, n-1 \rrbracket\)}{
+           \ForAll{\(S\subset\mathcal{P}_s(\llbracket 1, n-1 \rrbracket)\)}
+           {
+               \ForAll{\(k\in S\)}{
+                   \(
+                    best [S, k] \gets \min \left\{best\left[S - \{k\}, m\right] +\distance(m, k): m \in S - \{k\}\right\}    
+                   \)
+               }
+           }
+       }
+       optimal \(\gets \min\limits_{k>0}\left\{best[\llbracket 1, n-1\rrbracket, k] + \distance{1, k}\right\}\) 
+    }
+    \KwOut{optimal}
+
+    
+\end{algorithm}
