@@ -8,7 +8,7 @@ Having stated \TSP, it is natural to consider its solvability and, if so, its so
 
     In this section, we will examine the simplest approach to solving \TSP. It simply consists of a brute-force search. More specifically, it is an exhaustive search of the solution space (i.e., the set of all possible tours).
 
-    It is easy to see that this indeed is an exact solver, and that \TSP{} is a fortiori solvable. The pseudocode for this approach is given by Algorithm~\ref{algo:naive-tsp}.
+    It is easy to see that this indeed is an exact solver, and that \TSP{} is a fortiori solvable, as is by the same reasoning any problem with a finite solution space . The pseudocode for this approach is given by Algorithm~\ref{algo:naive-tsp}.
 
     \begin{algorithm}
         \caption{Naive \TSP}
@@ -16,29 +16,31 @@ Having stated \TSP, it is natural to consider its solvability and, if so, its so
         \SetKwFunction{size}{size}
         \SetKwFunction{pathLength}{path\_length}
         \KwIn{instance}
-        \comment{The instance is given an adjacency matrix.}
+        \comment{An instance of the TSP}
 
         \Begin{
-            n \(\gets\) \size{instance}\;
-            best\_length \(\gets\) \(+\infty\)\;
-            \ForEach{\(\sigma\in S_n\)}{
-                \If{\pathLength{instance, \(\sigma\)} \(<\) best\_path}
-                {
-                    best\_path \(\gets\) \(\sigma\)\;
-                    best\_length \(\gets\) \pathLength{instance, \(\sigma\)}\;
+            \(n \gets \size{instance} - 1\)\;
+            best\_length \(\gets+\infty\)\;
+                \ForEach{\(\sigma\in S_n\)}{
+                    \If{\pathLength{instance, \(\sigma\)} \(<\) best\_path}
+                    {
+                        best\_path \(\gets\) \(\sigma\)\;
+                        best\_length \(\gets\) \pathLength{instance, \(\sigma\)}\;
+                    }
                 }
             }
             \KwOut{best\_path}
-        }
     \end{algorithm}
 
 \subsection{Performance Analysis}
 
 Since this is an exact algorithm, it makes no sense to talk about the quality of the solutions it produces, they are always optimal. However, it is possible to assess the performance of the algorithm by examining its computational complexity.
 
-From this point of view, the naive algorithm is very inefficient. In fact, the runtime of Algorithm~\ref{algo:naive-tsp} is proportional to \(|S_n|\) which gives a runtime of \(O\left((n-1)!\right)\).
+From this point of view, the naive algorithm is very inefficient. In fact, the runtime of Algorithm~\ref{algo:naive-tsp} is proportional to \(|S_n|\) which gives a runtime of \(\Theta(n!)\). This is completely unfeasible for even moderate instances (for 15 cities, we get something on the order of \(8.7 \times 10^{10}\)), a more efficient algorithm is required.
 
 
 \section{Branch and Bound Methods}
+
+
 
 \section{Dynamic Programming}

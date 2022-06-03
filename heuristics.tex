@@ -44,3 +44,25 @@ Despite them being exact, the algorithms we introduced so far are not always pra
     
 
     \section{2-OPT and 3-OPT}
+
+    \begin{algorithm}
+        \caption{2--OPT}
+        \label{algo:2-opt}
+
+        \KwIn{instance \comment{An instance of TSP} }
+        \KwIn{starting\_tour \comment{A tour of the instance}}
+        \SetKwFunction{range}{range}
+        \SetKwFunction{pathLength}{path\_length}
+
+        \Begin{
+            \Repeat{aa}{
+                \ForEach{first in \range(n)}{
+                    \ForEach{second in \range(n) \(-\) [$first - 1, first, first + 1$]}{
+                        \If{\pathLength{a, b}}{
+                            swap
+                        }
+                    }
+                }
+            }
+        }
+    \end{algorithm}
