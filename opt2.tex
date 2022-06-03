@@ -1,0 +1,44 @@
+\section{Improvement Heuristics 2-OPT}
+
+\subsection{The Algorithm}
+
+Improvement heuristics are the polar opposite of construction heuristics. They need an initial solution to start from. The solution is then modified to get a better neighboring solution.
+
+In particular, 2-OPT takes a tour and swaps two edges to reduce the tour length. It keeps doing this until no such edge pair can be found. Algorithm~\ref{algo:2-opt} describes this process.
+
+\begin{algorithm}
+    \caption{2--OPT}
+    \label{algo:2-opt}
+
+    \KwIn{instance \comment{An instance of TSP} }
+    \KwIn{starting\_tour \comment{A tour of the instance}}
+    \SetKwFunction{range}{range}
+    \SetKwFunction{distance}{distance}
+    \SetKwFunction{swap}{swap}
+
+    \Begin{
+        \Repeat{exit}{
+            exit \(gets\) true\;
+            \ForEach(\comment{For evry city in the tour}){i \(\in \llbracket 0, n-1\rrbracket\)}{
+                \ForEach(\comment{For evry city non-adjacent to i in the tour}){j in \(\in \llbracket 0, n-1\rrbracket- \{i - 1, i, i + 1\}\)}{
+                    \If(\comment{If the swap is benificial}){\(\distance{i, i + 1} + \distance{j, j + 1} < \distance{i, j} + \distance{j + 1, i + 1}\)}{
+                        \swap{i, i+1, j, j+1}\comment{Swap the edges}\;
+                        exit \(gets\) false \comment{Keep looping}\;
+                    }
+                    
+                }
+            }
+        }
+    }
+\end{algorithm}
+
+\subsection{Performance Analysis}
+
+From a runtime perspective, 2-OPT is a somewhat decent heuristic. Its average case runtime is \(O(n^2)\), but its worst case runtime is exponential. This makes it generally too expensive to use on its own, but it is very useful when combined with other heuristics.
+
+The solutions it gives by contrast are of very high quality. Very tight upper bounds on the 2-OPT tour's length can be proven under the assumption of the triangle inequality~\cite{opt2-ratio}, and even better bounds can be achieved. This is formalized by Proposition~\ref{prop:opt2-ratio}.
+
+\begin{proposition}[Bounds on 2--OPT]
+    \label{prop:opt2-ratio}
+    If \(x\) is a \TSP{} instance, then \[\mu_x(2OPT(x))\le \sqrt{n\over 2} \mathrm{opt}(x)\]
+\end{proposition}
