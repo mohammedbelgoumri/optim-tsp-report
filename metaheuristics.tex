@@ -9,7 +9,7 @@
         \SetKwFunction{random}{random}
         \SetKwFunction{size}{size}
         \SetKwFunction{pathLength}{path\_length}
-        \SetKwFunction{copy}{copy}
+        \SetKwFunction{getcopy}{copy}
         \SetKwFunction{swap}{swap}
         \KwIn{instance: an instance of TSP, initial\_temperature, cooling\_rate, final\_temperature}
 
@@ -22,7 +22,7 @@
             \While(\tcp*[l]{Simulated Annealing}){\(temperature > final_temperature\)}{
                 \tcp*[l]{Generate neighbor path by swapping two cities}
                 nodes\_to\_swap \(\gets\) \random{0, \size{instance}, 2}\;
-                new\_path \(\gets\) \copy{path}\;
+                new\_path \(\gets\) \getcopy{path}\;
                 \swap{new\_path,nodes\_to\_swap}\;
 
                 \tcp*[l]{Accept new path if it is better or if it is accepted with a probability}
@@ -47,7 +47,7 @@
         \SetKwFunction{random}{random}
         \SetKwFunction{size}{size}
         \SetKwFunction{pathLength}{path\_length}
-        \SetKwFunction{copy}{copy} 
+        \SetKwFunction{getcopy}{copy} 
         \SetKwFunction{argmin}{argmin}
         \SetKwFunction{cross}{cross}
 
