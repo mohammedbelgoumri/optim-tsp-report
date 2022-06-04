@@ -49,6 +49,29 @@
     \section{Genetic Algorithm}
 
     \begin{algorithm}
+        This section describes a simple genetic algorithm. The vocabulary will probably look a little bit "esoteric" to the OR specialist, but the aim of this section is to describe the basic principles of the genetic search in the most straightforward and simple way. 
+        At the origin, the evolution algorithms were randomized search techniques aimed at simulating the natural evolution of asexual species .
+        In this model, new individuals were created via random mutations to the existing individuals. Holland and his students extended this model by allowing "sexual reproduction", that is, the combination or crossover of genetic material from two parents to create a new offspring. These algorithms were called "genetic algorithms" , and the introduction of the crossover operator proved to be a fundamental ingredient in the success of this search technique. 
+
+        Basically, a genetic algorithm operates on a finite population of chromosomes or bit strings.
+        The search mechanism consists of three different phases: evaluation of the fitness of each chromosome, selection of the parent chromosomes, and application of the mutation and recombination operators to the parent chromosomes.
+        The newchromosomes resulting from these operations form the next generation, and the process is repeated until the system ceases to improve. In the following, the general behavior of the genetic search is first characterized. Then, section 2.2 will describe a simple genetic algorithm in greater detail.
+        First, let us assume that some function f(x) is to be maximized over the set of integers ranging from 0 to 63. In this example, we ignore the obvious fact that such a small problem could be easily solved through complete enumeration.
+        In order to apply a genetic algorithm to this problem, the variable x must first be coded as a bit string.
+       Here, a bit string of length 6 is chosen, so that integers between 0 (000000) and 63 (I 11111) can be obtained. The fitness of each chromosome is f(x), where x is the integer value encoded in the chromosome.
+       Assuming a population of eight chromosomes, it is possible to create an initial population by randomly generating  eight different bit strings, and by evaluating their fitness, through f, as illustrated in figure 3. For example, chromosome 1 encodes the integer 49 and its fitness is f(49) = 90.
+       \section{Genetic Algorithm's steps}   
+          1. Create an initial population of P chromosomes (generation 0).
+          2. Evaluate the fitness of each chromosome.
+          3. Select P parents from the current population via proportional selection (i.e.,the selection probability is proportional to the fitness).
+          4. Choose at random a pair of parents for mating. Exchange bit strings with the one-point crossover to create two offspring. 
+          5. Process each offspring by the mutation operator, and insert the resulting offspring in the new population.
+          6. Repeat steps 4 and 5 until all parents are selected and mated (P offspring are created). 
+          7. Replace the old population of chromosomes by the new one.
+          8. Evaluate the fitness of each chromosome in the new population.
+          9. Go back to step 3 if the number of generations is less than some upper bound. Otherwise, the final result is the best chromosome created during the search. 
+
+       
         \caption{Genetic Algorithm \TSP}
         \label{algo:genetic}
 
