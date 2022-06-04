@@ -34,7 +34,15 @@ In particular, 2-OPT takes a tour and swaps two edges to reduce the tour length.
 
 \subsection{Performance Analysis}
 
-From a runtime perspective, 2-OPT is a somewhat decent heuristic. Its average case runtime is \(O(n^2)\), but its worst case runtime is exponential. This makes it generally too expensive to use on its own, but it is very useful when combined with other heuristics.
+From a runtime perspective, 2-OPT is a somewhat decent heuristic. Its average case runtime is \(O(n^2)\), but its worst case runtime is exponential, Figure~\ref{fig:2-opt-time} shows the observed runtime of 2-opt vs the size of the instance. This makes it generally too expensive to use on its own, but it is very useful when combined with other heuristics.
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=.8\textwidth]{nn_time.png}
+    \end{center}
+    \caption{Average runtime in seconds of Nearest Neighbor initialized 2--OPT}
+    \label{fig:2-opt-time}
+\end{figure}
 
 The solutions it gives by contrast are of very high quality. Very tight upper bounds on the 2-OPT tour's length can be proven under the assumption of the triangle inequality~\cite{opt2-ratio}, and even better bounds can be achieved. This is formalized by Proposition~\ref{prop:opt2-ratio}.
 
