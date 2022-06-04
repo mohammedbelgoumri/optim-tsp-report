@@ -38,7 +38,15 @@ Nearest Neighbor in particular explores one branch of the search tree traversed 
 
 In order to judge the performance of Algorithm~\ref{algo:nearest-neighbor}, two factors must be considered: runtime complexity and solution quality.
 
-On the first measure, Nearest Neighbor does exceedingly well. Not only is its runtime polynomial in the number of cities, the degree of the polynomial is remarkably low. In fact, it can be shown that the runtime of Nearest Neighbor is \(\Theta(n^2)\), \(n\) being the number of cities (which is impressive given the difficulty of \TSP). This is because the main while loop is executed \(n\) times, and each call to \texttt{nearestNeighbors} runs in \(\Theta(n)\) time.
+On the first measure, Nearest Neighbor does exceedingly well. Not only is its runtime polynomial in the number of cities, the degree of the polynomial is remarkably low. In fact, it can be shown that the runtime of Nearest Neighbor is \(\Theta(n^2)\), \(n\) being the number of cities (see Figure~\ref{fig:nn-time}),  which is impressive given the difficulty of \TSP. This is because the main while loop is executed \(n\) times, and each call to \texttt{nearestNeighbors} runs in \(\Theta(n)\) time.
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=.8\textwidth]{nn_time.png}
+    \end{center}
+    \caption{Average runtime in seconds of Nearest Neighbor}
+    \label{fig:nn-time}
+\end{figure}
 
 On the second however, it is difficult to come up with an algorithm that gives worse solutions than Nearest Neighbor. It is, in a certain sense, the worst possible solver of \TSP{}. This assessment is made rigorous by Proposition~\ref{prop:nn-anti}.
 
